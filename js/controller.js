@@ -1,19 +1,37 @@
 //控制器
-module.controller("RouteListCtl", function($scope, ajaxService){
+module.controller("RouteListCtl", function($scope, ajaxService, $http){
     console.log("RouteListCtl");
-    ajaxService.ajaxFunc({
-        url: '../data/account.json'
-    }).then(function(data) {
-        $scope.accounts = data;
-        console.log(data);
-    }, function(error) {
-        console.log(error);
-    });
+    // 重新获取数据条目
+    var reGetProducts = function(){
+        // 发送给后台的请求数据
+        var postData = {
+            currentPage: $scope.paginationConf.currentPage,
+            itemsPerPage: $scope.paginationConf.itemsPerPage
+        };
+        ajaxService.ajaxFunc({
+            url: siteConfig.domain+'/json1/index.php',
+            method: 'jsonp'
+        }).then(function(data) {
+            $scope.paginationConf.totalItems = data.items.length;
+            var start = (postData.currentPage-1)*postData.itemsPerPage;
+            var end = (postData.currentPage-1)*postData.itemsPerPage + postData.itemsPerPage;
+            $scope.accounts = data.items.slice(start, end);
+        }, function(error) {
+            console.log(error);
+        });
+    };
+    $scope.paginationConf = {
+        currentPage: 1,
+        itemsPerPage: 6
+    };
+    $scope.$watch('paginationConf.currentPage + paginationConf.itemsPerPage', reGetProducts);
 });
+
 module.controller("RouteDetailCtl", function($scope, $routeParams){
     console.log("RouteDetailCtl");
     console.log($routeParams);
 });
+
 // 左侧导航选中效果
 module.controller("NavCtrl", function($scope,$location){
     // console.log($location.$$path);

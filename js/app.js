@@ -1,6 +1,10 @@
-var module = angular.module("routeApp",["ui.router"]);
+var siteConfig = {
+    "domain" : "http://10.0.2.89/"
+};
+var module = angular.module("routeApp",["ui.router",'tm.pagination']);
 //路由配置
 module.config(function($stateProvider, $urlRouterProvider){
+    var index = 'index';
     $urlRouterProvider.when("", '/index');
     $stateProvider.state("login", {
         url: "/login",
