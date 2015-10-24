@@ -1,7 +1,7 @@
 var siteConfig = {
     "domain" : "http://10.0.2.89/"
 };
-var module = angular.module("routeApp",["ui.router",'tm.pagination']);
+var module = angular.module("routeApp",["ui.router",'tm.pagination','ui.bootstrap']);
 //路由配置
 module.config(function($stateProvider, $urlRouterProvider){
     var index = 'index';
@@ -23,8 +23,7 @@ module.config(function($stateProvider, $urlRouterProvider){
                 templateUrl: 'views/leftnav.html'
             },
             'content@index': {
-                templateUrl: 'views/list.html',
-                controller: 'RouteListCtl'
+                templateUrl: 'views/list.html'
             }
         }
     }).state("about", {
@@ -61,7 +60,24 @@ module.config(function($stateProvider, $urlRouterProvider){
                 controller: 'FormCtrl'
             }
         }
+    }).state("accordion", {
+        url: "/accordion",
+        views: {
+            '': {
+                templateUrl: 'views/index.html'
+            },
+            'topbar@accordion' : {
+                templateUrl: 'views/topbar.html'
+            },
+            'leftnav@accordion' : {
+                templateUrl: 'views/leftnav.html'
+            },
+            'content@accordion' : {
+                templateUrl: 'views/accordion.html'
+            }
+        }
     });
+    // $locationProvider.html5Mode(true);
     //$urlRouterProvider.otherwise('/login');
 });
 // module.config(['$routeProvider','$locationProvider',function ($routeProvider,$locationProvider) {

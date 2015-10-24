@@ -1,30 +1,36 @@
 //控制器
-module.controller("RouteListCtl", function($scope, ajaxService, $http){
-    console.log("RouteListCtl");
+/**
+ * [账户列表控制器]
+ * @param  {[object]} $scope          [作用域对象]
+ * @param  {[object]} ajaxService     [promise对象]
+ * @param  {[object]} function)       [description]
+ * @param  {[object]} function}       [description]
+ * @return {[无]}                     [description]
+ */
+module.controller("RouteListCtl", function($scope,$uibModal, accountService){
+    $scope.currentPage = 1;
+    $scope.itemsPerPage = 5;
     // 重新获取数据条目
-    var reGetProducts = function(){
-        // 发送给后台的请求数据
-        var postData = {
-            currentPage: $scope.paginationConf.currentPage,
-            itemsPerPage: $scope.paginationConf.itemsPerPage
-        };
-        ajaxService.ajaxFunc({
-            url: siteConfig.domain+'/json1/index.php',
-            method: 'jsonp'
-        }).then(function(data) {
-            $scope.paginationConf.totalItems = data.items.length;
-            var start = (postData.currentPage-1)*postData.itemsPerPage;
-            var end = (postData.currentPage-1)*postData.itemsPerPage + postData.itemsPerPage;
+    var getAccountList = function() {
+        accountService.accountList().then(function(data){
+            $scope.totalItems = data.items.length;
+            var start = ($scope.currentPage -1 )* $scope.itemsPerPage;
+            var end = ($scope.currentPage-1)* $scope.itemsPerPage + $scope.itemsPerPage;
             $scope.accounts = data.items.slice(start, end);
-        }, function(error) {
-            console.log(error);
-        });
+        });       
     };
-    $scope.paginationConf = {
-        currentPage: 1,
-        itemsPerPage: 6
+    getAccountList();
+    $scope.pageChanged = function() {
+        getAccountList();
     };
-    $scope.$watch('paginationConf.currentPage + paginationConf.itemsPerPage', reGetProducts);
+    $scope.showAddForm = function(size) {
+        var modalInstance = $uibModal.open({
+            animation: $scope.animationsEnabled,
+            templateUrl: 'views/addForm.html',
+            controller: 'ModalInstanceCtrl',
+            size: size
+        })
+    }
 });
 
 module.controller("RouteDetailCtl", function($scope, $routeParams){
@@ -41,6 +47,7 @@ module.controller("NavCtrl", function($scope,$location){
             case '/list' : index = 1; break;
             case '/about' : index = 2; break;
             case '/form' : index =3; break;
+            case '/accordion' : index = 4; break;
         }
         return index;
     }
@@ -79,13 +86,55 @@ module.controller("FormCtrl", function($scope){
         }
     }
 });
-module.controller("AddAccountCtrl", function($scope){
+// module.controller("AddAccountCtrl", function($scope, accountService,$modalInstance){
+//     $scope.account = {
+//         name: 'qq',
+//         accountName: '253921698',
+//         password: 'yizhicheng'
+//     };
+//     $scope.ok = function() {
+//         console.log("ok");
+//         $modalInstance.close();
+//     };
+//     $scope.cancel = function() {
+//         console.log('cancel');
+//         $modalInstance.dismiss('cancel');
+//     };
+//     $scope.submit = function() {
+//         accountService.addAccount().then(function(data){
+//             alert(data.msg);
+//             //console.log(data+"right");
+//         }, function(reason){
+//             alert("错误");
+//             // console.log(reason+"error");
+//         });
+//     };
+// });
+module.controller('AccordionListCtrl', ['$scope', function($scope){
+    $scope.oneAtATime = true;
+    $scope.groups = [{
+        title: "这是手风琴效果头部",
+        content: "这是手风琴内容部分"
+    }, {
+        title: "手风琴头部2",
+        content: "这是手风琴内容部分2"
+    }];
+    $scope.status = {
+        isFirstOpen: true,
+        isFirstDisabled: false
+    }
+}]);
+module.controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
     $scope.account = {
         name: 'qq',
         accountName: '253921698',
         password: 'yizhicheng'
     };
-    $scope.submit = function() {
-        console.log($scope.account);
+    $scope.ok = function () {
+        $modalInstance.close();
     };
-})
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+});

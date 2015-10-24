@@ -1,0 +1,10 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main ng-scope" ng-controller="AccordionListCtrl">
+  <uib-accordion close-others="oneAtATime">
+      <uib-accordion-group heading="手风琴效果1" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+        手风琴效果1的内容
+      </uib-accordion-group>
+      <uib-accordion-group heading="{{group.title}}" ng-repeat="group in groups">
+        {{group.content}}
+      </uib-accordion-group>
+  </uib-accordion>
+</div>
