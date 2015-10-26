@@ -1,6 +1,58 @@
 var siteConfig = {
     "domain" : "http://10.0.2.89/"
 };
+var leftNav = [{
+    uri: 'index',
+    text: '账户列表'
+},{
+    uri: 'about',
+    text: '关于我们'
+},{
+    uri: 'form',
+    text: '添加账户'
+},{
+    uri: 'accordion',
+    text: '手风琴效果'
+},{
+    uri: 'alert',
+    text: '弹出框'
+},{
+    uri: 'datepicker',
+    text: '日期选择器'
+},{
+    uri: 'buttons',
+    text: 'Buttons'
+},{
+    uri: 'carousel',
+    text: 'Carousel'
+},{
+    uri: 'collapse',
+    text: 'Collapse'
+},{
+    uri: 'dropdown',
+    text: 'DropDown'
+},{
+    uri: 'popover',
+    text: 'PopOver'
+},{
+    uri: 'progressbar',
+    text: 'ProgressBar'
+},{
+    uri: 'rating',
+    text: 'Rating'
+},{
+    uri: 'tabs',
+    text: 'Tabs'
+},{
+    uri: 'timepicker',
+    text: 'TimePicker'
+},{
+    uri: 'tooltip',
+    text: 'ToolTip'
+},{
+    uri: 'typehead',
+    text: 'TypeHead'
+}];
 var module = angular.module("routeApp",["ui.router",'tm.pagination','ui.bootstrap']);
 //路由配置
 module.config(function($stateProvider, $urlRouterProvider){
@@ -74,6 +126,102 @@ module.config(function($stateProvider, $urlRouterProvider){
             },
             'content@accordion' : {
                 templateUrl: 'views/accordion.html'
+            }
+        }
+    }).state("alert", {
+        url: "/alert",
+        views: {
+            '': {
+                templateUrl: 'views/index.html'
+            },
+            'topbar@alert': {
+                templateUrl: 'views/topbar.html'
+            },
+            'leftnav@alert' : {
+                templateUrl: 'views/leftnav.html'
+            },
+            'content@alert': {
+                templateUrl: 'views/alert.html'
+            }
+        }
+    }).state("datepicker",{
+        url: "/datepicker",
+        views: {
+            '': {
+                templateUrl: 'views/index.html'
+            },
+            'topbar@datepicker': {
+                templateUrl: 'views/topbar.html'
+            },
+            'leftnav@datepicker': {
+                templateUrl: 'views/leftnav.html'
+            },
+            'content@datepicker': {
+                templateUrl: 'views/datepicker.html'
+            }
+        }
+    }).state("buttons",{
+        url: "/buttons",
+        views: {
+            '': {
+                templateUrl: 'views/index.html'
+            },
+            'topbar@buttons': {
+                templateUrl: 'views/topbar.html'
+            },
+            'leftnav@buttons': {
+                templateUrl: 'views/leftnav.html'
+            },
+            'content@buttons': {
+                templateUrl: 'views/buttons.html'
+            }
+        }
+    }).state("carousel",{
+        url: "/carousel",
+        views: {
+            '': {
+                templateUrl: 'views/index.html'
+            },
+            'topbar@carousel': {
+                templateUrl: 'views/topbar.html'
+            },
+            'leftnav@carousel': {
+                templateUrl: 'views/leftnav.html'
+            },
+            'content@carousel': {
+                templateUrl: 'views/carousel.html'
+            }
+        }
+    }).state("collapse",{
+        url: "/collapse",
+        views: {
+            '': {
+                templateUrl: 'views/index.html'
+            },
+            'topbar@collapse': {
+                templateUrl: 'views/topbar.html'
+            },
+            'leftnav@collapse': {
+                templateUrl: 'views/leftnav.html'
+            },
+            'content@collapse': {
+                templateUrl: 'views/collapse.html'
+            }
+        }
+    }).state("dropdown",{
+        url: "/dropdown",
+        views: {
+            '': {
+                templateUrl: 'views/index.html'
+            },
+            'topbar@dropdown': {
+                templateUrl: 'views/topbar.html'
+            },
+            'leftnav@dropdown': {
+                templateUrl: 'views/leftnav.html'
+            },
+            'content@dropdown': {
+                templateUrl: 'views/dropdown.html'
             }
         }
     });

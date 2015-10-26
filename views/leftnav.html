@@ -2,13 +2,9 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar" ng-controller="NavCtrl">
           <ul class="nav nav-sidebar">
-            <li ng-class="{'active': selectIndex===1}" ng-click="selected(1)"><a ui-sref="index">账户列表</a></li>
-            <li ng-class="{'active': selectIndex===2}" ng-click="selected(2)"><a ui-sref="about">about</a></li>
-            <li ng-class="{'active': selectIndex===3}" ng-click="selected(3)">
-                <a ui-sref="form">添加账户</a>
+            <li ng-repeat="nav in navs" ng-class="{'active': currentUri===(nav.uri)}" ng-click="selected()">
+              <a ui-sref="{{nav.uri}}">{{nav.text}}</a>
             </li>
-            <li ng-class="{'active': selectIndex===4}" ng-click="selected(4)">
-              <a ui-sref="accordion">手风琴效果</a></li>
           </ul>
         </div>
         <div ui-view="content"></div>

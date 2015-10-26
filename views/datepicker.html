@@ -1,0 +1,15 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2" style="margin-top: 10px;" ng-controller="DatepickerDemoCtrl">
+<div class="row">
+    <div class="col-md-6">
+        <p class="input-group">
+            <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="关闭" clear-text="清除" current-text="今天"/>
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)">
+                <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </span>
+        </p>
+    </div>
+</div>
+<button type="button" ng-click="submit()" class="btn btn-primary" style="margin-left: 15px;">提交</button>
+</div>

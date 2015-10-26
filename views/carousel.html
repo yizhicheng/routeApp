@@ -1,0 +1,13 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2" ng-controller="CarouseCtrl">
+    <div style="height: 305px;width: 500px;margin-top: 10px;">
+        <uib-carousel interval="myInterval" no-wrap="noWrapSlides">
+            <uib-slide ng-repeat="slide in slides" active="slide.active">
+                <img ng-src="{{slide.image}}" style="margin: auto;">
+                <div class="carousel-caption">
+                    <h4>Slide {{$index}}</h4>
+                    <p>{{slide.text}}</p>
+                </div>
+            </uib-slide>
+        </uib-carousel>
+    </div>
+</div>

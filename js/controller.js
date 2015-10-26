@@ -41,19 +41,10 @@ module.controller("RouteDetailCtl", function($scope, $routeParams){
 // 左侧导航选中效果
 module.controller("NavCtrl", function($scope,$location){
     // console.log($location.$$path);
-    var getIndex = function (path){
-        var index = 1;
-        switch(path) {
-            case '/list' : index = 1; break;
-            case '/about' : index = 2; break;
-            case '/form' : index =3; break;
-            case '/accordion' : index = 4; break;
-        }
-        return index;
-    }
-    $scope.selectIndex = getIndex($location.$$path);
-    $scope.selected = function(index) {
-        $scope.selectIndex = index;
+    $scope.navs = leftNav;
+    $scope.currentUri = $location.$$path.split('/')[1];
+    $scope.selected = function() {
+        $scope.currentUri = $location.$$path.split('/')[1];
     }
 });
 
@@ -138,3 +129,136 @@ module.controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
     $modalInstance.dismiss('cancel');
   };
 });
+module.controller('AlertCtrl', ['$scope', function($scope){
+    $scope.alerts = [{ type: 'danger', msg: 'danger.' },
+    { type: 'success', msg: 'success.' },
+    {type: 'info', msg: 'info'}];
+    $scope.addAlert = function () {
+        $scope.alerts.push({"msg": "Alert test",type: 'warning'});
+    };
+    $scope.closeAlert = function (index) {
+        $scope.alerts.splice(index, 1)
+    };
+}]);
+//日期选择器
+module.controller('DatepickerDemoCtrl', ['$scope', function($scope){
+    $scope.today = function() {
+        $scope.dt = new Date();
+    };
+    $scope.today();
+    $scope.clear = function() {
+        $scope.dt = null;
+    };
+    $scope.disabled = function(date, mode) {
+        return (mode==='day' && (date.getDay()===0 || date.getDay === 6));
+    };
+    $scope.toggleMin =  function() {
+        $scope.minDate = $scope.minDate ? null :new Date();
+    };
+    $scope.toggleMin();
+    $scope.maxDate = new Date(2020,5,22);
+    $scope.open = function($event) {
+        $scope.status.opened = true;
+    };
+    $scope.setDate = function(year, month, day) {
+        $scope.dt = new Date(year, month, day);
+        console.log("setDate");
+    };
+    $scope.dateOptions = {
+        formatYear: 'yy',
+        startingDay: 1
+    };
+    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    $scope.format = $scope.formats[1];
+
+    $scope.status = {
+        opened: false
+    };
+    var tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    var afterTomorrow = new Date();
+    afterTomorrow.setDate(tomorrow.getDate() + 2);
+    $scope.events =
+    [
+        {
+            date: tomorrow,
+            status: 'full'
+        },
+        {
+            date: afterTomorrow,
+            status: 'partially'
+        }
+    ];
+
+    $scope.getDayClass = function(date, mode) {
+        if (mode === 'day') {
+            var dayToCheck = new Date(date).setHours(0,0,0,0);
+
+            for (var i=0;i<$scope.events.length;i++){
+                var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
+
+                if (dayToCheck === currentDay) {
+                    return $scope.events[i].status;
+                }
+            }
+        }
+
+        return '';
+    };
+    $scope.submit = function () {
+        console.log($scope.dt);
+    }
+}]);
+//Buttons 控制器
+module.controller('ButtonsCtrl', ['$scope', function($scope){
+    $scope.singleModel = 0;
+    $scope.radionModel = "Middle";
+    $scope.checkModel = {
+        left: false,
+        middle: true,
+        right: false
+    };
+    $scope.checkResults = [];
+    $scope.$watchCollection('checkModel', function () {
+        $scope.checkResults = [];
+        angular.forEach($scope.checkModel, function (value, key) {
+            if (value) {
+                $scope.checkResults.push(key);
+            }
+        });
+    });
+}]);
+//CarouseCtrl控制器
+module.controller('CarouseCtrl', ['$scope', function($scope){
+    $scope.myInterval = 3000;
+    $scope.noWrapSlides = false;
+    var slides = $scope.slides = [{
+        image: "../images/1.jpg",
+        text: "第一张"
+    }, {
+        image: "../images/2.jpg",
+        text: "第二张"
+    },{
+        image: "../images/3.jpg",
+        text: "第三张"
+    }];
+
+}]);
+//CollapseCtrl控制器
+module.controller('CollapseCtrl', ['$scope', function($scope){
+    $scope.isCollapsed = false;
+}]);
+//下拉列表控制器
+module.controller('DropDownCtrl', ['$scope', function($scope){
+    $scope.items = [
+        "第一条",
+        "第二条",
+        "第三条"
+    ];
+    $scope.status = {
+        isopen: false
+    };
+    $scope.toggled = function(open) {
+        console.log(open);
+    };
+}]);
