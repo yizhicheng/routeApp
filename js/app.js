@@ -3,7 +3,7 @@
 // };
 var module = angular.module("routeApp",["ui.router",'ui.bootstrap']);
 //路由配置
-module.config(function($stateProvider, $urlRouterProvider){
+module.config(function($stateProvider, $urlRouterProvider, $locationProvider){
     $urlRouterProvider.when("", '/index');
     $stateProvider.state("login", {
         url: "/login",
@@ -284,6 +284,6 @@ module.config(function($stateProvider, $urlRouterProvider){
             }
         }
     });
-    // $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/login');
 });
