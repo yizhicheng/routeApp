@@ -1,62 +1,9 @@
-var siteConfig = {
-    "domain" : "http://10.0.2.89/"
-};
-var leftNav = [{
-    uri: 'index',
-    text: '账户列表'
-},{
-    uri: 'about',
-    text: '关于我们'
-},{
-    uri: 'form',
-    text: '添加账户'
-},{
-    uri: 'accordion',
-    text: '手风琴效果'
-},{
-    uri: 'alert',
-    text: '弹出框'
-},{
-    uri: 'datepicker',
-    text: '日期选择器'
-},{
-    uri: 'buttons',
-    text: 'Buttons'
-},{
-    uri: 'carousel',
-    text: 'Carousel'
-},{
-    uri: 'collapse',
-    text: 'Collapse'
-},{
-    uri: 'dropdown',
-    text: 'DropDown'
-},{
-    uri: 'popover',
-    text: 'PopOver'
-},{
-    uri: 'progressbar',
-    text: 'ProgressBar'
-},{
-    uri: 'rating',
-    text: 'Rating'
-},{
-    uri: 'tabs',
-    text: 'Tabs'
-},{
-    uri: 'timepicker',
-    text: 'TimePicker'
-},{
-    uri: 'tooltip',
-    text: 'ToolTip'
-},{
-    uri: 'typehead',
-    text: 'TypeHead'
-}];
-var module = angular.module("routeApp",["ui.router",'tm.pagination','ui.bootstrap']);
+// ;var siteConfig = {
+//     "domain" : "http://10.0.2.89/"
+// };
+var module = angular.module("routeApp",["ui.router",'ui.bootstrap']);
 //路由配置
 module.config(function($stateProvider, $urlRouterProvider){
-    var index = 'index';
     $urlRouterProvider.when("", '/index');
     $stateProvider.state("login", {
         url: "/login",
@@ -224,26 +171,119 @@ module.config(function($stateProvider, $urlRouterProvider){
                 templateUrl: 'views/dropdown.html'
             }
         }
+    }).state("popover",{
+        url: "/popover",
+        views: {
+            '': {
+                templateUrl: 'views/index.html'
+            },
+            'topbar@popover': {
+                templateUrl: 'views/topbar.html'
+            },
+            'leftnav@popover': {
+                templateUrl: 'views/leftnav.html'
+            },
+            'content@popover': {
+                templateUrl: 'views/popover.html'
+            }
+        }
+    }).state("progressbar",{
+        url: "/progressbar",
+        views: {
+            '': {
+                templateUrl: 'views/index.html'
+            },
+            'topbar@progressbar': {
+                templateUrl: 'views/topbar.html'
+            },
+            'leftnav@progressbar': {
+                templateUrl: 'views/leftnav.html'
+            },
+            'content@progressbar': {
+                templateUrl: 'views/progressbar.html'
+            }
+        }
+    }).state("rating",{
+        url: "/rating",
+        views: {
+            '': {
+                templateUrl: 'views/index.html'
+            },
+            'topbar@rating': {
+                templateUrl: 'views/topbar.html'
+            },
+            'leftnav@rating': {
+                templateUrl: 'views/leftnav.html'
+            },
+            'content@rating': {
+                templateUrl: 'views/rating.html'
+            }
+        }
+    }).state("tabs",{
+        url: "/tabs",
+        views: {
+            '': {
+                templateUrl: 'views/index.html'
+            },
+            'topbar@tabs': {
+                templateUrl: 'views/topbar.html'
+            },
+            'leftnav@tabs': {
+                templateUrl: 'views/leftnav.html'
+            },
+            'content@tabs': {
+                templateUrl: 'views/tabs.html'
+            }
+        }
+    }).state("timepicker",{
+        url: "/timepicker",
+        views: {
+            '': {
+                templateUrl: 'views/index.html'
+            },
+            'topbar@timepicker': {
+                templateUrl: 'views/topbar.html'
+            },
+            'leftnav@timepicker': {
+                templateUrl: 'views/leftnav.html'
+            },
+            'content@timepicker': {
+                templateUrl: 'views/timepicker.html'
+            }
+        }
+    }).state("tooltip",{
+        url: "/tooltip",
+        views: {
+            '': {
+                templateUrl: 'views/index.html'
+            },
+            'topbar@tooltip': {
+                templateUrl: 'views/topbar.html'
+            },
+            'leftnav@tooltip': {
+                templateUrl: 'views/leftnav.html'
+            },
+            'content@tooltip': {
+                templateUrl: 'views/tooltip.html'
+            }
+        }
+    }).state("typeahead",{
+        url: "/typeahead",
+        views: {
+            '': {
+                templateUrl: 'views/index.html'
+            },
+            'topbar@typeahead': {
+                templateUrl: 'views/topbar.html'
+            },
+            'leftnav@typeahead': {
+                templateUrl: 'views/leftnav.html'
+            },
+            'content@typeahead': {
+                templateUrl: 'views/typeahead.html'
+            }
+        }
     });
     // $locationProvider.html5Mode(true);
-    //$urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/login');
 });
-// module.config(['$routeProvider','$locationProvider',function ($routeProvider,$locationProvider) {
-//     // $locationProvider.html5Mode(true);
-//     $routeProvider.when('/list', {
-//         templateUrl: 'views/list.html',
-//         controller: 'RouteListCtl'
-//     })
-//     .when('/about', {
-//         templateUrl: 'views/about.html',
-//         controller: 'RouteDetailCtl'
-//     })
-//     .when('/list/add', {
-//         templateUrl: 'views/list.html',
-//         controller: 'RouteListCtl'
-//     })
-//     .otherwise({
-//         redirectTo: '/list'
-//     });
-// }]);
-

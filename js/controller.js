@@ -1,3 +1,4 @@
+;
 //控制器
 /**
  * [账户列表控制器]
@@ -7,7 +8,8 @@
  * @param  {[object]} function}       [description]
  * @return {[无]}                     [description]
  */
-module.controller("RouteListCtl", function($scope,$uibModal, accountService){
+module.controller("RouteListCtl", function($scope,$uibModal, accountService,leftNav){
+    // console.log(leftNav);
     $scope.currentPage = 1;
     $scope.itemsPerPage = 5;
     // 重新获取数据条目
@@ -29,8 +31,8 @@ module.controller("RouteListCtl", function($scope,$uibModal, accountService){
             templateUrl: 'views/addForm.html',
             controller: 'ModalInstanceCtrl',
             size: size
-        })
-    }
+        });
+    };
 });
 
 module.controller("RouteDetailCtl", function($scope, $routeParams){
@@ -39,7 +41,7 @@ module.controller("RouteDetailCtl", function($scope, $routeParams){
 });
 
 // 左侧导航选中效果
-module.controller("NavCtrl", function($scope,$location){
+module.controller("NavCtrl", function($scope,$location,leftNav){
     // console.log($location.$$path);
     $scope.navs = leftNav;
     $scope.currentUri = $location.$$path.split('/')[1];
@@ -77,30 +79,6 @@ module.controller("FormCtrl", function($scope){
         }
     }
 });
-// module.controller("AddAccountCtrl", function($scope, accountService,$modalInstance){
-//     $scope.account = {
-//         name: 'qq',
-//         accountName: '253921698',
-//         password: 'yizhicheng'
-//     };
-//     $scope.ok = function() {
-//         console.log("ok");
-//         $modalInstance.close();
-//     };
-//     $scope.cancel = function() {
-//         console.log('cancel');
-//         $modalInstance.dismiss('cancel');
-//     };
-//     $scope.submit = function() {
-//         accountService.addAccount().then(function(data){
-//             alert(data.msg);
-//             //console.log(data+"right");
-//         }, function(reason){
-//             alert("错误");
-//             // console.log(reason+"error");
-//         });
-//     };
-// });
 module.controller('AccordionListCtrl', ['$scope', function($scope){
     $scope.oneAtATime = true;
     $scope.groups = [{
@@ -125,19 +103,26 @@ module.controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
         $modalInstance.close();
     };
 
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
 });
 module.controller('AlertCtrl', ['$scope', function($scope){
-    $scope.alerts = [{ type: 'danger', msg: 'danger.' },
-    { type: 'success', msg: 'success.' },
-    {type: 'info', msg: 'info'}];
+    $scope.alerts = [{
+        type: 'danger', 
+        msg: 'danger.' 
+    },{ 
+        type: 'success', 
+        msg: 'success.' 
+    },{
+        type: 'info', 
+        msg: 'info'
+    }];
     $scope.addAlert = function () {
         $scope.alerts.push({"msg": "Alert test",type: 'warning'});
     };
     $scope.closeAlert = function (index) {
-        $scope.alerts.splice(index, 1)
+        $scope.alerts.splice(index, 1);
     };
 }]);
 //日期选择器
@@ -261,4 +246,54 @@ module.controller('DropDownCtrl', ['$scope', function($scope){
     $scope.toggled = function(open) {
         console.log(open);
     };
+}]);
+module.controller('PopOverCtrl', ['$scope', function($scope){
+    $scope.dynamic = {
+        content: 'content',
+        title: 'title'
+    };
+}]);
+
+module.controller('ProgressBarCtrl', ['$scope', '$log',function($scope, $log){
+    $log.log("progressbar");
+}]);
+
+module.controller('RatingCtrl', ['$scope', function($scope){
+    // $log.error("这是测试的error，不是真正的错误，可以忽略此提示!");
+    $scope.rate = 7;
+    $scope.max = 10;
+    $scope.$watch('rate', function() {
+        console.log($scope.rate);
+    });
+}]);
+
+module.controller('TabsCtrl', ['$scope', function($scope){
+    $scope.tabs = [{
+        title: "第一条title",
+        content: "第一条内容",
+        active: true
+    },{
+        title: "第二条title",
+        content: "第二条内容",
+        active: false
+    },{
+        title: "第三条title",
+        content: "第三条内容",
+        active: false
+    }];
+}]);
+module.controller('TimePickerCtrl', ['$scope', function($scope){
+    $scope.hstep = 1;
+    $scope.mstep = 15;
+    $scope.ismeridian = true;//12小时格式，24小时格式
+    $scope.mytime = new Date();
+}]);
+module.controller('ToolTipCtrl', ['$scope', function($scope){
+    $scope.top = "top";
+    $scope.bottom = "bottom";
+    $scope.left = "left";
+    $scope.right = "right";
+}]);
+module.controller('TypeAheadCtrl', ['$scope', function($scope){
+    
 }]);

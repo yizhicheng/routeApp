@@ -6,6 +6,7 @@
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
     <title>密码管理系统</title>
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.min.css">
     <link rel="stylesheet" type="text/css" href="css/dashboard.css">
     <link rel="stylesheet" href="css/page.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -15,15 +16,21 @@
 <body>
     <!-- <base href="http://127.0.0.1/" /> -->
     <div ui-view class="container-fluid"></div>
+    <!--生产环境 -->
+    <!-- 
+    <script type="text/javascript" src="js/base.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/page.js"></script>
+     -->
+
+    <!-- 开发模式 -->
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
-    <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script type="text/javascript" src="js/common/page.js"></script>
-    <script type="text/javascript" scr="js/config.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.js"></script>
+    <script type="text/javascript" src="js/lib/bootstrap.js"></script>
+    <script type="text/javascript" src="js/lib/angular.js"></script>
+    <script type="text/javascript" src="js/lib/angular-ui-router.js"></script>
+    <script type="text/javascript" src="js/lib/ui-bootstrap-tpls.js"></script>
+
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/services.js"></script>
     <script type="text/javascript" src="js/controller.js"></script>
