@@ -8,7 +8,7 @@
  * @param  {[object]} function}       [description]
  * @return {[无]}                     [description]
  */
-module.controller("RouteListCtl", function($scope,$uibModal, accountService,leftNav){
+module.controller("RouteListCtl",['$scope','$uibModal', 'accountService', 'leftNav', function($scope,$uibModal, accountService,leftNav){
     // console.log(leftNav);
     $scope.currentPage = 1;
     $scope.itemsPerPage = 5;
@@ -33,36 +33,36 @@ module.controller("RouteListCtl", function($scope,$uibModal, accountService,left
             size: size
         });
     };
-});
+}]);
 
-module.controller("RouteDetailCtl", function($scope, $routeParams){
+module.controller("RouteDetailCtl",["$scope", "$routeParams" , function($scope, $routeParams){
     console.log("RouteDetailCtl");
     console.log($routeParams);
-});
+}]);
 
 // 左侧导航选中效果
-module.controller("NavCtrl", function($scope,$location,leftNav){
+module.controller("NavCtrl", ["$scope","$location","leftNav",function($scope,$location,leftNav){
     // console.log($location.$$path);
     $scope.navs = leftNav;
     $scope.currentUri = $location.$$path.split('/')[1];
     $scope.selected = function() {
         $scope.currentUri = $location.$$path.split('/')[1];
     }
-});
+}]);
 
-module.controller("LoginCtrl", function($scope, $location){
+module.controller("LoginCtrl", ["$scope", "$location", function($scope, $location){
     $scope.submit = function () {
         //alert("登录失败");
         $location.path('/index')
     }
-});
-module.controller("AboutCtrl", function($scope){
+}]);
+module.controller("AboutCtrl", ["$scope", function($scope){
     $scope.about = "关于我们";
-});
-module.controller("ListCtrl", function($scope){
+}]);
+module.controller("ListCtrl", ["$scope" ,function($scope){
 
-});
-module.controller("FormCtrl", function($scope){
+}]);
+module.controller("FormCtrl", ["$scope", function($scope){
     $scope.account = {
         name: 'qq',
         accountName: "qq",
@@ -78,7 +78,7 @@ module.controller("FormCtrl", function($scope){
             password: "qq"
         }
     }
-});
+}]);
 module.controller('AccordionListCtrl', ['$scope', function($scope){
     $scope.oneAtATime = true;
     $scope.groups = [{
@@ -93,7 +93,7 @@ module.controller('AccordionListCtrl', ['$scope', function($scope){
         isFirstDisabled: false
     }
 }]);
-module.controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
+module.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", function ($scope, $modalInstance) {
     $scope.account = {
         name: 'qq',
         accountName: '253921698',
@@ -106,7 +106,7 @@ module.controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
-});
+}]);
 module.controller('AlertCtrl', ['$scope', function($scope){
     $scope.alerts = [{
         type: 'danger', 
@@ -296,4 +296,21 @@ module.controller('ToolTipCtrl', ['$scope', function($scope){
 }]);
 module.controller('TypeAheadCtrl', ['$scope', function($scope){
     
+}]);
+module.controller('TestTreeCtrl', ['$scope', '$http', function($scope, $http){
+    $http.get('data/node.json').success(function(data){
+        $scope.data = data;
+    }).error(function(reason){
+        console.log("取数据失败");
+    });
+    // $scope.toggle = function (scope) {
+        // console.log(scope);
+        // scope.toggle();
+        // $scope.collapsed = !$scope.collapsed;
+    // };
+    // $scope.treeOptions = {
+    //     accept: function() {
+    //         console.log("this is callback");
+    //     }
+    // };
 }]);

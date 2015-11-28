@@ -1,9 +1,9 @@
 // ;var siteConfig = {
 //     "domain" : "http://10.0.2.89/"
 // };
-var module = angular.module("routeApp",["ui.router",'ui.bootstrap']);
+var module = angular.module("routeApp",["ui.router",'ui.bootstrap','ui.tree']);
 //路由配置
-module.config(function($stateProvider, $urlRouterProvider, $locationProvider){
+module.config(['$stateProvider','$urlRouterProvider','$locationProvider',function($stateProvider, $urlRouterProvider, $locationProvider){
     $urlRouterProvider.when("", '/index');
     $stateProvider.state("login", {
         url: "/login",
@@ -283,7 +283,23 @@ module.config(function($stateProvider, $urlRouterProvider, $locationProvider){
                 templateUrl: 'views/typeahead.html'
             }
         }
+    }).state("tree",{
+        url: "/tree",
+        views: {
+            '': {
+                templateUrl: 'views/index.html'
+            },
+            'topbar@tree': {
+                templateUrl: 'views/topbar.html'
+            },
+            'leftnav@tree': {
+                templateUrl: 'views/leftnav.html'
+            },
+            'content@tree': {
+                templateUrl: 'views/testtree.html'
+            }
+        }
     });
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/login');
-});
+}]);

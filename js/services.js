@@ -7,7 +7,7 @@
  * @return {object}             服务对象
  */
 'use strict';
-module.factory('accountService', function($q, $http){
+module.factory('accountService', ['$q','$http',function($q, $http){
     var ajaxGet = function(url) {
         var d = $q.defer();
         $http.get(url).success(function(data){
@@ -32,7 +32,7 @@ module.factory('accountService', function($q, $http){
             return ajaxGet("data/add.json");
         }
     };
-});
+}]);
 /**
  * 常量服务 左侧导航
  * @type {String}
@@ -88,4 +88,7 @@ module.constant('leftNav', [{
 },{
     uri: 'typeahead',
     text: 'TypeAhead'
+},{
+    uri: 'tree',
+    text: '测试tree'
 }]);

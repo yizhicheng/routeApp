@@ -2,20 +2,28 @@
 <html ng-app="routeApp">
 <head>
     <meta charset="UTF-8">
-    <meta name="fragment" content="#">
+    <base href="/" />
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
     <title>密码管理系统</title>
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/style.min.css">
+    <link rel="stylesheet" type="text/css" href="dist/css/style.min.css">
+    <link rel="stylesheet" type="text/css" href="dist/scss/sass.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 </head>
 <body>
     <!-- <base href="http://127.0.0.1/" /> -->
-    <div ui-view class="container-fluid"></div>
-    <!--生产环境 -->
-    <script type="text/javascript" src="js/base.min.js"></script>
-    <script type="text/javascript" src="js/page.js"></script>
+    <div ui-view class="container-fluid">
+        
+    </div>
+    <!-- 生产环境  -->
+    <script type="text/javascript" src="dist/js/base.min.js"></script>
+    <script type="text/javascript" src="dist/js/page.min.js"></script>
+
+
+    <!-- 开发模式 -->
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    
 </body>
 </html>
