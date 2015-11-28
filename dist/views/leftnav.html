@@ -1,1 +1,0 @@
-<div class="container-fluid"><div class="row"><div class="col-sm-3 col-md-2 sidebar" ng-controller="NavCtrl"><ul class="nav nav-sidebar"><li ng-repeat="nav in navs" ng-class="{'active': currentUri===(nav.uri)}" ng-click="selected()"><a ui-sref="{{nav.uri}}">{{nav.text}}</a></li></ul></div><div ui-view="content"></div></div></div>

@@ -1,0 +1,24 @@
+<div class="col-md-10 col-md-offset-2" ng-controller="TestTreeCtrl">
+    <!-- Nested node template -->
+    <script type="text/ng-template" id="nodes_renderer.html">
+      <div ui-tree-handle class="ui-tree-handle" ng-click="toggle(this)">
+        
+        <a class="btn btn-success btn-xs ng-scope" ng-if="node.nodes && node.nodes.length > 0" data-nodrag="" >
+        <span class="glyphicon glyphicon-chevron-right" ng-class="{
+          'glyphicon-chevron-right': collapsed,
+          'glyphicon-chevron-down': !collapsed
+        }"></span>
+        </a>
+        {{node.title}}
+      </div>
+      <ol ui-tree-nodes="" ng-model="node.nodes" ng-class="{hidden: collapsed}">
+        <li ng-repeat="node in node.nodes" ui-tree-node ng-include="'nodes_renderer.html'" collapsed="true">
+        </li>
+      </ol>
+    </script>
+    <div ui-tree data-nodrop-enabled="true" data-drag-enabled="false">
+      <ol ui-tree-nodes="" ng-model="data" id="tree-root" ng-class="{hidden: collapsed}">
+        <li ng-repeat="node in data" ui-tree-node ng-include="'nodes_renderer.html'" collapsed="true"></li>
+      </ol>
+    </div>
+</div>
